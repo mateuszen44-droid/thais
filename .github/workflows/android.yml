@@ -1,36 +1,47 @@
 name: Android Build
 
 on:
+  workflow_dispatch:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build web assets (if exists)
-        run: npm run build || echo "No build step"
+      - name: Install Capacitor Android v5
+        run: npm install @capacitor/android@5 --legacy-peer-deps
 
-      - name: Add Android platform
-        run: npx cap add android || echo "Android already added"
+      - name: Add Android platform (if missing)
+        run: |
+          if [ ! -d "android" ]; then
+            npx cap add android
+          fi
 
-      - name: Sync Capacitor
-        run: npx cap sync
+      - name: Sync web to Android
+        run: npx cap copy android
 
-      - name: Build APK
+      - name: Build Debug APK
         run: |
           cd android
           chmod +x gradlew
