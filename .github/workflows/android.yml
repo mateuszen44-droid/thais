@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Setup Node
@@ -21,14 +21,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build Web
+      - name: Build web assets (if exists)
         run: npm run build || echo "No build step"
 
-      - name: Add Android Platform
-        run: npx cap add android || echo "Already added"
+      - name: Add Android platform
+        run: npx cap add android || echo "Android already added"
 
-      - name: Copy Files
-        run: npx cap copy
+      - name: Sync Capacitor
+        run: npx cap sync
 
       - name: Build APK
         run: |
@@ -36,8 +36,8 @@ jobs:
           chmod +x gradlew
           ./gradlew assembleDebug
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v3
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
         with:
           name: app-debug-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
