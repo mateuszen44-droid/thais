@@ -1,0 +1,6 @@
+{
+  "appId": "com.projetothais.playstore",
+  "appName": "Projeto Thais",
+  "webDir": "www",
+  "bundledWebRuntime": false
+}

@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Projeto Thais</title>
+  <link rel="icon" href="assets/icon_512.png">
+  <link rel="apple-touch-icon" href="assets/icon_512.png">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <img src="assets/icon_512.png" alt="Projeto Thais" class="logo" />
+        <div>
+          <div class="title">Projeto Thais</div>
+          <div class="subtitle">Ciclo menstrual com fé ✝️</div>
+        </div>
+      </div>
+      <button class="ghost" id="btnQuickSave" title="Salvar início hoje">Salvar hoje</button>
+    </header>
+
+    <main class="content" id="content"></main>
+
+    <nav class="bottomnav">
+      <button class="navbtn active" data-route="home"><span class="ic">🏠</span><span>Início</span></button>
+      <button class="navbtn" data-route="calendar"><span class="ic">📅</span><span>Calendário</span></button>
+      <button class="navbtn" data-route="symptoms"><span class="ic">💗</span><span>Sintomas</span></button>
+      <button class="navbtn" data-route="devotional"><span class="ic">📖</span><span>Devocional</span></button>
+      <button class="navbtn" data-route="prayer"><span class="ic">🙏</span><span>Oração</span></button>
+      <button class="navbtn" data-route="stats"><span class="ic">📊</span><span>Stats</span></button>
+      <button class="navbtn" data-route="settings"><span class="ic">⚙️</span><span>Ajustes</span></button>
+    </nav>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
